@@ -1,0 +1,68 @@
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+### NICKNAME CHANGER BY DISCORD.GG/XURO
+
+import logging
+
+discord_client_logger = logging.getLogger('discord.client')
+discord_gateway_logger = logging.getLogger('discord.gateway')
+
+discord_client_logger.setLevel(logging.WARNING)
+discord_gateway_logger.setLevel(logging.WARNING)
+
+import discord
+from discord.ext import commands
+import colorama
+from colorama import Fore, Style
+import os
+import time
+from pystyle import *
+
+bot = commands.Bot(command_prefix='.', intents=discord.Intents.all())
+
+os.system("title Xuro Nickname Changer   l   discord.gg/xuro")
+
+@bot.event
+async def on_ready():
+    print(Colorate.Vertical(Colors.blue_to_purple, f'''
+    
+                                      :::    ::: :::    ::: :::::::::   :::::::: 
+                                     :+:    :+: :+:    :+: :+:    :+: :+:    :+: 
+                                     +:+  +:+  +:+    +:+ +:+    +:+ +:+    +:+  
+                                     +#++:+   +#+    +:+ +#++:++#:  +#+    +:+   Logged in as: {bot.user.name}
+                                   +#+  +#+  +#+    +#+ +#+    +#+ +#+    +#+      Made with love by: @z0vh
+                                 #+#    #+# #+#    #+# #+#    #+# #+#    #+#     
+                                ###    ###  ########  ###    ###  ########      
+                                
+                                 '''))
+
+@bot.command()
+async def nick(ctx, *, new_name: str):
+    try:
+        count = 0 
+        for member in ctx.guild.members:
+            if not member.bot:  
+                try:
+                    await member.edit(nick=new_name)
+                    print(f'                       {Fore.WHITE}[{Fore.MAGENTA}{time.strftime("%H:%M:%S")}{Fore.WHITE}] {Fore.GREEN} Successfully changed nickname of {member.name} to: {new_name}')
+                    count += 1 
+                except discord.Forbidden:
+                    print(f"                       {Fore.WHITE}[{Fore.MAGENTA}{time.strftime('%H:%M:%S')}{Fore.WHITE}] {Fore.RED} Couldn't change nickname for {member.name}. Missing permissions.")
+        
+        print(f'                       {Fore.WHITE}[{Fore.MAGENTA}{time.strftime("%H:%M:%S")}{Fore.WHITE}] {Fore.YELLOW} Changed nickname of {count} users to: {new_name}')
+    except Exception as e:
+        print(f'                       {Fore.WHITE}[{Fore.MAGENTA}{time.strftime("%H:%M:%S")}{Fore.WHITE}] {Fore.RED} An error occurred: {e}')
+
+bot.run('DISCORD-BOT-TOKEN')
